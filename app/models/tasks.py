@@ -26,10 +26,13 @@ class Task(Base):
     description = Column(TEXT)
     status = Column(SqlEnum("TODO", "In progress", "Done"))
     priority = Column(SqlEnum("Low", "Medium", "High"))
-    end_date = Column(DateTime)
+    deadline = Column(DateTime)
     created_at = Column(DateTime)
     created_by = Column(String(length=36))
     updated_at = Column(DateTime)
+
+    class Config:
+        orm_mode = True
 
 
 class User(Base):
@@ -46,3 +49,6 @@ class User(Base):
     password = Column(String(length=255))
     created_at = Column(DateTime)
     updated_at = Column(DateTime)
+
+    class Config:
+        orm_mode = True

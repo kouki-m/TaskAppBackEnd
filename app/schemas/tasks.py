@@ -12,21 +12,42 @@ class TaskCreateRequest(BaseSchema):
     title: str = Field(..., title="タスク名")
     description: Optional[str] = Field(None, title="タスクの説明")
     deadline: Optional[datetime.datetime] = Field(None, title="締め切り日時")
-    label: Optional[list[str]] = Field(None, title="ラベル")
-    priority: Optional[str] = Field(None, title="優先度")
-    status: Optional[str] = Field(None, title="ステータス")
+    # label: Optional[list[str]] = Field(
+    #     None, title="ラベル", example=["Python", "FastAPI"]
+    # )
+    priority: Optional[str] = Field(None, title="優先度", example="High")
+    status: Optional[str] = Field(None, title="ステータス", example="TODO")
 
 
 class TaskCreateResponse(BaseSchema):
-    task_id: uuid.UUID = Field(..., title="タスクID")
+    id: uuid.UUID = Field(..., title="タスクID")
     message: str = Field(..., title="メッセージ")
 
 
 class TaskListResponse(BaseSchema):
-    task_id: uuid.UUID = Field(..., title="タスクID")
+    id: uuid.UUID = Field(..., title="タスクID")
     title: str = Field(..., title="タスク名")
     description: Optional[str] = Field(None, title="タスクの説明")
     deadline: Optional[datetime.datetime] = Field(None, title="締め切り日時")
-    label: Optional[list[str]] = Field(None, title="ラベル")
+    # label: Optional[list[str]] = Field(None, title="ラベル")
     priority: Optional[str] = Field(None, title="優先度")
     status: Optional[str] = Field(None, title="ステータス")
+
+
+class TaskDeleteResponse(BaseSchema):
+    id: uuid.UUID = Field(..., title="タスクID")
+    message: str = Field(..., title="メッセージ")
+
+
+class TaskUpdateRequest(BaseSchema):
+    title: Optional[str] = Field(None, title="タスク名")
+    description: Optional[str] = Field(None, title="タスクの説明")
+    deadline: Optional[datetime.datetime] = Field(None, title="締め切り日時")
+    # label: Optional[list[str]] = Field(None, title="ラベル")
+    priority: Optional[str] = Field(None, title="優先度", example="High")
+    status: Optional[str] = Field(None, title="ステータス", example="TODO")
+
+
+class TaskUpdateResponse(BaseSchema):
+    id: uuid.UUID = Field(..., title="タスクID")
+    message: str = Field(..., title="メッセージ")
